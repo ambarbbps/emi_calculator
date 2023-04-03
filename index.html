@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <style>
+        body{
+            text-align: center;
+            background-image: url('EMI-calculator.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-color: #d54377;
+
+        }
+        form{
+            display: inline-block;
+            margin: 0;
+            text-align: center;
+
+        }
+        label {
+            font-weight: bold;
+        }
+        /* Add styles to the button */
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <br><br><br><br><br><br><br><br><br>
+        <label for="loanAmount">Loan Amount:</label><br><br>
+        <input type="number" id="loanAmount" name="loanAmount"><br><br>
+        <label for="interestRate">Annual Interest Rate:</label><br>
+        <input type="number" id="interestRate" name="interestRate"><br><br>
+        <label for="tenure">Tenure (Number of months):</label><br>
+        <input type="number" id="tenure" name="tenure"><br><br>
+    </form> 
+    <br>
+    <div style="border: 2px solid #d54377; padding: 10px; display: inline-block;">
+        <button onclick="calculateEMI()">Calculate EMI</button><br><br>
+    </div>
+    
+
+    <p><b>Total interest to be paid: </b><span id="totalInterest"></span></p>
+    <p><b>Total payment (principal + interest): </b><span id="totalPayment"></span></p>
+    <p><b>EMI per month: </b><span id="emi"></span></p>
+    <script>
+        function calculateEMI() {
+            var loanAmount = document.getElementById("loanAmount").value;
+            var interestRate = document.getElementById("interestRate").value;
+            var tenure = document.getElementById("tenure").value;
+
+            var monthlyInterestRate = interestRate / (12 * 100);
+            var emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) / (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+            var totalPayment = emi * tenure;
+            var totalInterest = totalPayment - loanAmount;
+
+            document.getElementById("totalInterest").innerHTML = totalInterest.toFixed(2);
+            document.getElementById("totalPayment").innerHTML = totalPayment.toFixed(2);
+            document.getElementById("emi").innerHTML = emi.toFixed(2);
+        }
+    </script>
+</body>
+</html>
