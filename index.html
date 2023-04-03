@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMI Calculator</title>
     <style>
-       body{
-    text-align: center;
-    background-image: url('EMI-calculator.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #d54377;
-}
+      body{
+        text-align: center;
+        background-image: url('EMI-calculator.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-color: #d54377;
+
+    }
 
         form{
             display: inline-block;
@@ -37,12 +38,13 @@
             cursor: pointer;
         }
         
-        /* Media query for mobile devices */
-        @media only screen and (max-width: 600px) {
-          body {
+        /* Adjust background image for screens smaller than 768px */
+    @media only screen and (max-width: 768px) {
+        body{
             background-size: cover;
-          }
+            background-position: center;
         }
+    }
     </style>
 </head>
 <body>
